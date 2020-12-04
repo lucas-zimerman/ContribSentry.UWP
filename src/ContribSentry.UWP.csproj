@@ -146,21 +146,6 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
-  <PropertyGroup>
-    <PackageId>ContribSentry.UWP</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <PackageOutputPath>$(Outputpath)</PackageOutputPath>
-    <Authors>Lucas Zimerman</Authors>
-    <Title>ContribSentry.UWP</Title>
-    <RequireLicenseAcceptance>
-    </RequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <projectUrl>https://github.com/lucas-zimerman/ContribSentry.UWP</projectUrl>
-    <IconUrl>contrib-nuget.png</IconUrl>
-    <description>Enhance the support of UWP projects with the official Sentry.NET SDK.</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
-    <tags>Sentry.io UWP ContribSentry Sentry</tags>
-  </PropertyGroup>
   <ItemGroup>
     <None Include="..\.assets\contrib-nuget.png">
       <Pack>True</Pack>
@@ -168,6 +153,21 @@
       </PackagePath>
     </None>
   </ItemGroup>
+  <PropertyGroup>
+    <PackageId>ContribSentry.UWP</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
+    <PackageOutputPath>$(Outputpath)</PackageOutputPath>
+    <Authors>Lucas Zimerman</Authors>
+    <Title>ContribSentry.UWP</Title>
+    <RequireLicenseAcceptance>
+    </RequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <projectUrl>https://github.com/lucas-zimerman/ContribSentry.UWP</projectUrl>
+    <PackageIcon>contrib-nuget.png</PackageIcon>
+    <description>Enhance the support of UWP projects with the official Sentry.NET SDK.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <tags>Sentry.io UWP ContribSentry Sentry</tags>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
