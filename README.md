@@ -35,3 +35,7 @@ All you need to do is to include UWPSentryIntegration on SentryOptions
 ```
 
 And that's all that you need to setup :D
+
+## NOTE
+
+V1.0.1 is not compatible with Sentry SDK 3.0.0, there'll be a specific release to support 3.0.0
