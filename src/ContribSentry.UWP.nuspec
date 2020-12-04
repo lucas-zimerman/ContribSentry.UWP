@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ContribSentry.UWP</id>
+    <version>1.0.0</version>
+    <title>ContribSentry.UWP</title>
+    <authors>Lucas Zimerman</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/lucas-zimerman/ContribSentry.UWP</projectUrl>
+    <iconUrl>contrib-nuget.png</iconUrl>
+    <description>Enhance the support of UWP projects with the official Sentry.NET SDK.</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <tags>Sentry.io UWP ContribSentry Sentry</tags>
+	<dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="Sentry" version="2.1.8" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+	  <files>
+    <file src="../.assets/contrib-nuget.png" target="contrib-nuget.png" />
+  </files>
+  </metadata>
+</package>

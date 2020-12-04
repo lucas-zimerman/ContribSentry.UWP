@@ -1,0 +1,1 @@
+MSBuild.exe /p:Configuration=Release /t:pack ContribSentry.UWP.csproj

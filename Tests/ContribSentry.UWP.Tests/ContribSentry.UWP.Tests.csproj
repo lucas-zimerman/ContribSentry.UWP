@@ -161,7 +161,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ContribSentry.UWP.csproj">
+    <ProjectReference Include="..\..\src\ContribSentry.UWP.csproj">
       <Project>{48aa35c0-c77d-4707-8860-22868d30b8d9}</Project>
       <Name>ContribSentry.UWP</Name>
     </ProjectReference>
