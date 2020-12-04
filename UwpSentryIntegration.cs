@@ -3,12 +3,8 @@ using Sentry.Infrastructure;
 using Sentry.Integrations;
 using Sentry.Protocol;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 
@@ -27,14 +23,14 @@ namespace ContribSentry.UWP
             options.DiagnosticLogger = new DebugDiagnosticLogger(options.DiagnosticsLevel);
 
             _application = Application.Current;
-            _application.UnhandledException += Handle;
+            _application.UnhandledException += NativeHandle;
             _application.EnteredBackground += OnSleep;
             _application.LeavingBackground += OnResume;
         }
 
         public void Unregister()
         {
-            _application.UnhandledException -= Handle;
+            _application.UnhandledException -= NativeHandle;
             _application.EnteredBackground -= OnSleep;
             _application.LeavingBackground -= OnResume;
 
@@ -44,24 +40,27 @@ namespace ContribSentry.UWP
         #region Events
 
         [HandleProcessCorruptedStateExceptions, SecurityCritical]
-        internal void Handle(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        internal void NativeHandle(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             //We need to backup the reference, because the Exception reference last for one access.
             //After that, a new  Exception reference is going to be set into e.Exception.
             var exception = e.Exception;
             Unregister();
+            Handle(exception);
+        }
 
+        [HandleProcessCorruptedStateExceptions, SecurityCritical]
+        internal void Handle(Exception exception)
+        {
             if (exception != null)
             {
-                exception.Data[Mechanism.HandledKey] = e.Handled;
+                exception.Data[Mechanism.HandledKey] = false;
                 exception.Data[Mechanism.MechanismKey] = "Application.UnhandledException";
                 _ = SentrySdk.CaptureException(exception);
-                if (!e.Handled)
-                {
-                    (_hub as IDisposable)?.Dispose();
-                }
+                (_hub as IDisposable)?.Dispose();
             }
         }
+
 
         private void OnResume(object sender, LeavingBackgroundEventArgs e)
             => SentrySdk.AddBreadcrumb("OnResume", "app.lifecycle", "event");

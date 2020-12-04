@@ -28,8 +28,7 @@ namespace ContribSentry.UWP.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void UwpSentryIntegration_Register_Unhandled_Exception()
+        public void UwpSentryIntegration_Register_UnhandledException()
         {
             var integration = new UwpSentryIntegration();
             var eventProcessorCalled = new ManualResetEvent(false);
@@ -40,9 +39,8 @@ namespace ContribSentry.UWP.Tests
                 o.AddEventProcessor(eventProcessor);
                 o.AddIntegration(integration);
             });
-//            integration.Handle(default, new Windows.UI.Xaml.UnhandledExceptionEventArgs());
-            throw new Exception("Boom");
-            eventProcessorCalled.WaitOne(7000);
+            integration.Handle(new Exception("Boom"));
+            Assert.IsTrue(eventProcessorCalled.WaitOne(1000));
         }
 
         private class MockEventProcessor : ISentryEventProcessor
@@ -52,7 +50,6 @@ namespace ContribSentry.UWP.Tests
             public SentryEvent Process(SentryEvent @event)
             {
                 _resetEvent.Set();
-                Assert.IsTrue(true);
                 return null;
             }
         }
