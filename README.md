@@ -18,11 +18,20 @@ Enhanced experience for Legacy UWP Projects.
 All you need to do is to include UWPSentryIntegration on SentryOptions
 
 ```C#
+    sealed partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+            //You must initialize after the InitializeComponent();
             SentrySdk.Init(o =>
             {
                 o.Dsn = new Dsn("your DSN");
                 o.AddIntegration(new UwpSentryIntegration());
             });
+            ...
+        }
+     ...
 ```
 
 And that's all that you need to setup :D
