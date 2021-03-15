@@ -20,7 +20,7 @@ namespace ContribSentry.UWP
             _hub = hub;
 
             options.AddEventProcessor(new UwpPlatformEventProcessor(options));
-            options.DiagnosticLogger = new DebugDiagnosticLogger(options.DiagnosticsLevel);
+            options.DiagnosticLogger = new DebugDiagnosticLogger(options.DiagnosticLevel);
 
             _application = Application.Current;
             _application.UnhandledException += NativeHandle;
